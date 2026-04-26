@@ -16,10 +16,10 @@ class Solution:
         # Apply ReLU after each hidden layer, no activation on output layer
         # return np.round(your_answer, 5)
         N = len(weights)
-        new_x = x.reshape(1, -1)
+        new_x = x
         for idx in range(N):
             new_x = new_x @ weights[idx] + biases[idx]
             if idx != (N-1):
-                new_x = np.where(new_x < 0, 0, new_x)
-        return np.round(new_x, 5).squeeze(axis=0)
+                new_x =np.maximum(0, new_x)
+        return np.round(new_x, 5)
 
